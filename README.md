@@ -2,6 +2,12 @@
 
 ## file description
 
+### model saving and reloading check
+Model predict-complex case.ipynb
+this notebook uses the cifar10 dataset (chosen for convenience) and a simple model is trained on a single epoch.
+Then the model and the generated weights are saved and reloaded again. Both models (presaved and reloaded) are then compiled and the predict method is used on a simplistic test set and result compared. 
+
+
 ### pickl files
 X_train.pkl
 X_val.pkl
