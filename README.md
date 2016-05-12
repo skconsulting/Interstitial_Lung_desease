@@ -2,6 +2,15 @@
 
 ## file description
 
+### prediction part notebook
+the file name is ILD_CNN Predict part.ipynb
+this notebook load the model and the weights trained in the former training session.
+Then it compiles it with the same compile paramenters as in the training session.
+It load the test set as the pto-be-predicted set and calculates the classification and the probabilities
+
+for the purpose of this prediction, other files needed to be updated. They are main4.py, cnn_model4.py, ild_helpers.py
+
+
 ### model saving and reloading check
 Model predict-complex case.ipynb
 this notebook uses the cifar10 dataset (chosen for convenience) and a simple model is trained on a single epoch.
