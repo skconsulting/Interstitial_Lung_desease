@@ -27,7 +27,7 @@ be found at: https://github.com/intact-project/ild-cnn
 import sys
 import cv2
 import numpy as np
-import helpers as H
+import ild_helpers as H
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Flatten, Activation
 from keras.layers.convolutional import Convolution2D, MaxPooling2D,AveragePooling2D
@@ -193,6 +193,7 @@ def train(x_train, y_train, x_val, y_val, params):
     
         # Evaluate models
         y_score = model.predict(x_val, batch_size=1050)
+
         fscore, acc, cm = H.evaluate(np.argmax(y_val, axis=1), np.argmax(y_score, axis=1))
         print('Val F-score: '+str(fscore)+'\tVal acc: '+str(acc))
 
@@ -201,6 +202,7 @@ def train(x_train, y_train, x_val, y_val, params):
 
         # check if current state of the model is the best and write evaluation metrics to file
         if fscore > maxf*params['tolerance']:  # if fscore > maxf*params['tolerance']:
+            print 'fscore is still bigger than last iterations fscore + 5%'
             # p            = 0  # restore patience counter
             best_model   = model  # store current model state
             maxf         = fscore 
@@ -210,6 +212,7 @@ def train(x_train, y_train, x_val, y_val, params):
             maxvaloss    = np.max(history.history['val_loss'])
 
             print(np.round(100*cm/np.sum(cm,axis=1).astype(float)))
+
             open(params['res_alias']+parameters_str+'-Best.csv', 'a').write(str(str(maxit)+', '+str(maxf)+', '+str(maxacc)+', '+str(maxtrainloss)+', '+str(maxvaloss)+'\n'))
 
         it += 1
@@ -217,4 +220,12 @@ def train(x_train, y_train, x_val, y_val, params):
     print('Max: fscore:', maxf, 'acc:', maxacc, 'epoch: ', maxit, 'train loss: ', maxtrainloss, 'validation loss: ', maxvaloss)
 
     return best_model
+
+
+def prediction(X_test, y_test):
+
+    # faked data
+    predicted_classes = [1,3,3,0,0,0,3,0,0,0,0,0,0]
+
+    return predicted_classes
 

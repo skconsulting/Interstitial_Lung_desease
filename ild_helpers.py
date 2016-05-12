@@ -33,6 +33,8 @@ import cPickle as pickle
 import sys
 from keras.utils import np_utils 
 
+from keras.models import model_from_json
+
 # debug
 # from ipdb import set_trace as bp
 
@@ -78,9 +80,43 @@ def load_data():
 
     return (X_train, y_train), (X_val, y_val)
 
+def load_testdata():
+
+    # load the dataset as X_train and as a copy the X_val
+    X_test = pickle.load( open( "X_test.pkl", "rb" ) )
+    y_test = pickle.load( open( "y_test.pkl", "rb" ) )
+   
+
+    # adding a singleton dimension and rescale to [0,1]
+    X_test = np.asarray(np.expand_dims(X_test,1))/float(255)
+
+    # labels to categorical vectors
+    uniquelbls = np.unique(y_test)
+    nb_classes = uniquelbls.shape[0]
+    zbn = np.min(uniquelbls) # zero based numbering
+    y_test = np_utils.to_categorical(y_test - zbn, nb_classes)
+    
+
+    return (X_test, y_test)
+
 def evaluate(actual,pred):
     fscore = metrics.f1_score(actual, pred, average='macro')
     acc = metrics.accuracy_score(actual, pred)
     cm = metrics.confusion_matrix(actual,pred)
 
     return fscore, acc, cm
+
+def store_model(model):
+    json_string = model.to_json()
+    open('ILD_CNN_model.json', 'w').write(json_string)
+    model.save_weights('./ILD_CNN_model_weights')
+
+    return json_string
+
+def load_model():
+    model = model_from_json(open('ILD_CNN_model.json').read())
+    model.load_weights('./ILD_CNN_model_weights')
+
+    return model
+
+
