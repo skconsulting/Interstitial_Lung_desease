@@ -3,8 +3,8 @@
 ## file description
 
 ## model and weights
-ILD_CNN_model.json 
-ILD_CNN_weights 
+     ILD_CNN_model.json 
+     ILD_CNN_model_weights 
 those files contain the model used (one needs to compile it after upload) and the weights coming from a training session with 100 Epochs
 
 ### prediction part notebook
