@@ -2,6 +2,11 @@
 
 ## file description
 
+## model and weights
+ILD_CNN_model.json 
+ILD_CNN_weights 
+those files contain the model used (one needs to compile it after upload) and the weights coming from a training session with 100 Epochs
+
 ### prediction part notebook
 the file name is ILD_CNN Predict part.ipynb
 this notebook load the model and the weights trained in the former training session.
