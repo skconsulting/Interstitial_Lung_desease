@@ -2,6 +2,11 @@
 
 ## file description
 
+##  preprocessing data for the predict stage
+     Prediction data preprocessing.ipynb
+this notebook loads the full data of a patient and appends the image bitmap to an array that will be submitted to predict
+Also, it creates a fiule reference with location x/y information
+
 ## model and weights
      ILD_CNN_model.json 
      ILD_CNN_model_weights 
