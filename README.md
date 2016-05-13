@@ -18,6 +18,9 @@ this notebook load the model and the weights trained in the former training sess
 Then it compiles it with the same compile paramenters as in the training session.
 It load the test set as the pto-be-predicted set and calculates the classification and the probabilities
 
+     ILD_CNN Predict part - on full patient data.ipynb
+slightly modified field to read X_pkl file 
+
 for the purpose of this prediction, other files needed to be updated. They are main4.py, cnn_model4.py, ild_helpers.py
 
 
