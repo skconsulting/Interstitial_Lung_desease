@@ -2,6 +2,11 @@
 
 ## file description
 
+## checking patches visually
+     checking patches visually.ipynb
+
+Going thru the patches, the objective is to detect if any patch is "off the grid".
+
 ##  preprocessing data for the predict stage
      Prediction data preprocessing.ipynb
 this notebook loads the full data of a patient and appends the image bitmap to an array that will be submitted to predict
